@@ -7,7 +7,7 @@ from BACKEND.app.tools.fetch_tool import fetch_url_content
 from BACKEND.app.tools.extract_tool import extract_clean_text
 from BACKEND.app.reasoning import run_reasoning
 from BACKEND.app.memory import memory
-
+from BACKEND.app.summarizer import summarize_content
 
 def planning_node(state: AgentState):
 
@@ -53,11 +53,24 @@ def extraction_node(state: AgentState):
         "extracted_text": extracted_data
     }
 
+def summarize_node(state: AgentState):
+
+    summaries = []
+
+    for text in state["extracted_text"]:
+
+        summary = summarize_content(text)
+
+        summaries.append(summary)
+
+    return {
+        "summaries": summaries
+    }
 
 def reasoning_node(state: AgentState):
 
     combined_research = "\n\n".join(
-        state["extracted_text"]
+    state["summaries"]
     )
 
     answer = run_reasoning(
@@ -90,6 +103,11 @@ builder.add_node(
 )
 
 builder.add_node(
+    "summarize",
+    summarize_node
+)
+
+builder.add_node(
     "reason",
     reasoning_node
 )
@@ -110,6 +128,11 @@ builder.add_edge(
 
 builder.add_edge(
     "extract",
+    "summarize"
+)
+
+builder.add_edge(
+    "summarize",
     "reason"
 )
 
