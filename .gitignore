@@ -12,3 +12,5 @@ venv/
 
 # Logs
 *.log
+
+__pycache__/
