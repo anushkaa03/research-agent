@@ -8,5 +8,4 @@ class AgentState(TypedDict):
     search_results: List
     extracted_text: List[str]
     final_answer: str
-    summaries: list
-    citations: list
+    research_data: list

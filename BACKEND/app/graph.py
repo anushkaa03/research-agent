@@ -7,8 +7,10 @@ from BACKEND.app.tools.fetch_tool import fetch_url_content
 from BACKEND.app.tools.extract_tool import extract_clean_text
 from BACKEND.app.reasoning import run_reasoning
 from BACKEND.app.memory import memory
+
 from BACKEND.app.summarizer import summarize_content
-from BACKEND.app.citation_manager import generate_citations
+from BACKEND.app.deduplication import deduplicate_facts
+
 
 def planning_node(state: AgentState):
 
@@ -46,41 +48,52 @@ def extraction_node(state: AgentState):
 
             clean_text = extract_clean_text(html)
 
-            extracted_data.append(
-                clean_text[:3000]
-            )
+            extracted_data.append({
+                "source": url,
+                "text": clean_text[:3000]
+            })
 
     return {
         "extracted_text": extracted_data
     }
 
+
 def summarize_node(state: AgentState):
 
-    summaries = []
+    research_data = []
 
-    for text in state["extracted_text"]:
+    for item in state["extracted_text"]:
 
-        summary = summarize_content(text)
+        summary = summarize_content(
+            item["text"]
+        )
 
-        summaries.append(summary)
+        research_data.append({
+            "summary": summary,
+            "source": item["source"]
+        })
 
     return {
-        "summaries": summaries
+        "research_data": research_data
     }
-def citation_node(state: AgentState):
 
-    citations = generate_citations(
-        state["search_results"]
+
+def deduplication_node(state: AgentState):
+
+    unique_data = deduplicate_facts(
+        state["research_data"]
     )
 
     return {
-        "citations": citations
+        "research_data": unique_data
     }
+
 
 def reasoning_node(state: AgentState):
 
     combined_research = "\n\n".join(
-        state["summaries"]
+        item["summary"]
+        for item in state["research_data"]
     )
 
     answer = run_reasoning(
@@ -92,16 +105,20 @@ def reasoning_node(state: AgentState):
 
     formatted_answer = answer + "\n\nReferences:\n"
 
-    for citation in state["citations"]:
+    for index, item in enumerate(
+        state["research_data"],
+        start=1
+    ):
 
         formatted_answer += (
-            f"{citation['id']} "
-            f"{citation['url']}\n"
+            f"[Source {index}] "
+            f"{item['source']}\n"
         )
 
     return {
         "final_answer": formatted_answer
     }
+
 
 builder = StateGraph(AgentState)
 
@@ -126,8 +143,8 @@ builder.add_node(
 )
 
 builder.add_node(
-    "citation",
-    citation_node
+    "deduplicate",
+    deduplication_node
 )
 
 builder.add_node(
@@ -156,13 +173,14 @@ builder.add_edge(
 
 builder.add_edge(
     "summarize",
-    "citation"
+    "deduplicate"
 )
 
 builder.add_edge(
-    "citation",
+    "deduplicate",
     "reason"
 )
+
 builder.add_edge(
     "reason",
     END
