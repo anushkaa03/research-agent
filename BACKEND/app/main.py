@@ -35,7 +35,9 @@ def research(request: ResearchRequest):
     return {
         "query": request.query,
         "plan": result["plan"],
-        "answer": result["final_answer"]
+        "answer": result["final_answer"],
+        "report": result["report"],
+        "pdf_path": result["pdf_path"]
     }
 
 

@@ -10,7 +10,8 @@ from BACKEND.app.memory import memory
 
 from BACKEND.app.summarizer import summarize_content
 from BACKEND.app.deduplication import deduplicate_facts
-
+from BACKEND.app.report_generator import generate_report
+from BACKEND.app.pdf_generator import generate_pdf
 
 def planning_node(state: AgentState):
 
@@ -119,6 +120,16 @@ def reasoning_node(state: AgentState):
         "final_answer": formatted_answer
     }
 
+def report_node(state: AgentState):
+
+    report = generate_report(state)
+
+    pdf_path = generate_pdf(report)
+
+    return {
+        "report": report,
+        "pdf_path": pdf_path
+    }
 
 builder = StateGraph(AgentState)
 
@@ -152,6 +163,11 @@ builder.add_node(
     reasoning_node
 )
 
+builder.add_node(
+    "report",
+    report_node
+)
+
 builder.set_entry_point(
     "planner"
 )
@@ -183,6 +199,11 @@ builder.add_edge(
 
 builder.add_edge(
     "reason",
+    "report"
+)
+
+builder.add_edge(
+    "report",
     END
 )
 
