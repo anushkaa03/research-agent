@@ -33,11 +33,11 @@ def research(request: ResearchRequest):
     )
 
     return {
-        "query": request.query,
-        "plan": result["plan"],
-        "answer": result["final_answer"],
-        "report": result["report"],
-        "pdf_path": result["pdf_path"]
+        "query": result.get("query"),
+        "plan": result.get("plan"),
+        "answer": result.get("final_answer"),
+        "report": result.get("report"),
+        "pdf_path": result.get("pdf_path")
     }
 
 

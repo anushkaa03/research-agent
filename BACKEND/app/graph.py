@@ -12,12 +12,23 @@ from BACKEND.app.summarizer import summarize_content
 from BACKEND.app.deduplication import deduplicate_facts
 from BACKEND.app.report_generator import generate_report
 from BACKEND.app.pdf_generator import generate_pdf
+from BACKEND.app.ambiguity_handler import is_ambiguous
 
 def planning_node(state: AgentState):
 
-    plan = create_research_plan(
-        state["query"]
-    )
+    query = state["query"]
+
+    if is_ambiguous(query):
+
+        return {
+            "final_answer":
+            (
+                "The research query appears ambiguous. "
+                "Please provide a more specific topic."
+            )
+        }
+
+    plan = create_research_plan(query)
 
     return {
         "plan": plan
@@ -131,6 +142,13 @@ def report_node(state: AgentState):
         "pdf_path": pdf_path
     }
 
+def route_after_planning(state: AgentState):
+
+    if "final_answer" in state:
+        return "end"
+
+    return "search"
+
 builder = StateGraph(AgentState)
 
 builder.add_node(
@@ -172,11 +190,14 @@ builder.set_entry_point(
     "planner"
 )
 
-builder.add_edge(
+builder.add_conditional_edges(
     "planner",
-    "search"
+    route_after_planning,
+    {
+        "search": "search",
+        "end": END
+    }
 )
-
 builder.add_edge(
     "search",
     "extract"
