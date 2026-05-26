@@ -9,3 +9,4 @@ class AgentState(TypedDict):
     extracted_text: List[str]
     final_answer: str
     summaries: list
+    citations: list

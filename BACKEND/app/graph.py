@@ -8,6 +8,7 @@ from BACKEND.app.tools.extract_tool import extract_clean_text
 from BACKEND.app.reasoning import run_reasoning
 from BACKEND.app.memory import memory
 from BACKEND.app.summarizer import summarize_content
+from BACKEND.app.citation_manager import generate_citations
 
 def planning_node(state: AgentState):
 
@@ -66,11 +67,20 @@ def summarize_node(state: AgentState):
     return {
         "summaries": summaries
     }
+def citation_node(state: AgentState):
+
+    citations = generate_citations(
+        state["search_results"]
+    )
+
+    return {
+        "citations": citations
+    }
 
 def reasoning_node(state: AgentState):
 
     combined_research = "\n\n".join(
-    state["summaries"]
+        state["summaries"]
     )
 
     answer = run_reasoning(
@@ -80,10 +90,18 @@ def reasoning_node(state: AgentState):
 
     memory.store_fact(answer)
 
-    return {
-        "final_answer": answer
-    }
+    formatted_answer = answer + "\n\nReferences:\n"
 
+    for citation in state["citations"]:
+
+        formatted_answer += (
+            f"{citation['id']} "
+            f"{citation['url']}\n"
+        )
+
+    return {
+        "final_answer": formatted_answer
+    }
 
 builder = StateGraph(AgentState)
 
@@ -105,6 +123,11 @@ builder.add_node(
 builder.add_node(
     "summarize",
     summarize_node
+)
+
+builder.add_node(
+    "citation",
+    citation_node
 )
 
 builder.add_node(
@@ -133,9 +156,13 @@ builder.add_edge(
 
 builder.add_edge(
     "summarize",
-    "reason"
+    "citation"
 )
 
+builder.add_edge(
+    "citation",
+    "reason"
+)
 builder.add_edge(
     "reason",
     END
