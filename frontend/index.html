@@ -32,11 +32,7 @@ body {
   line-height: 1.6;
   min-height: 100vh;
 }
-
-/* ── Layout ── */
 .shell { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
-
-/* ── Sidebar ── */
 aside {
   background: var(--surface);
   border-right: 1px solid var(--border);
@@ -49,282 +45,100 @@ aside {
   height: 100vh;
   overflow-y: auto;
 }
-.logo {
-  font-family: var(--font-serif);
-  font-size: 1.4rem;
-  color: var(--accent);
-  margin-bottom: 20px;
-  letter-spacing: -0.5px;
-}
+.logo { font-family: var(--font-serif); font-size: 1.4rem; color: var(--accent); margin-bottom: 20px; letter-spacing: -0.5px; }
 .logo span { color: var(--accent2); font-style: italic; }
 nav a {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 14px;
-  border-radius: 8px;
-  color: var(--muted);
-  text-decoration: none;
-  font-size: 0.88rem;
-  font-weight: 500;
-  transition: all 0.15s;
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 14px; border-radius: 8px;
+  color: var(--muted); text-decoration: none;
+  font-size: 0.88rem; font-weight: 500; transition: all 0.15s;
 }
-nav a:hover, nav a.active {
-  background: var(--card);
-  color: var(--text);
-}
+nav a:hover, nav a.active { background: var(--card); color: var(--text); }
 nav a.active { border-left: 2px solid var(--accent); padding-left: 12px; }
-.nav-icon { font-size: 1rem; opacity: 0.7; }
 .nav-sep { height: 1px; background: var(--border); margin: 10px 0; }
-
-/* ── Main ── */
-main {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
+main { display: flex; flex-direction: column; overflow: hidden; }
 .topbar {
-  padding: 20px 36px;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  padding: 20px 36px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
   background: var(--surface);
 }
 .topbar-title { font-family: var(--font-serif); font-size: 1.1rem; }
-.badge {
-  font-size: 0.72rem;
-  padding: 3px 10px;
-  border-radius: 20px;
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  font-family: var(--font-mono);
-}
+.badge { font-size: 0.72rem; padding: 3px 10px; border-radius: 20px; font-weight: 600; letter-spacing: 0.03em; font-family: var(--font-mono); }
 .badge-blue { background: #1e2f56; color: var(--accent); }
 .badge-green { background: #0f2d22; color: var(--success); }
 .badge-yellow { background: #2d2210; color: var(--warn); }
 .badge-red { background: #2d1010; color: var(--danger); }
-
 .content { padding: 36px; flex: 1; overflow-y: auto; }
-
-/* ── Panels ── */
 .panel { display: none; }
 .panel.active { display: block; }
-
-/* ── Cards ── */
-.card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 24px;
-  margin-bottom: 20px;
-}
-.card-title {
-  font-family: var(--font-serif);
-  font-size: 1rem;
-  margin-bottom: 16px;
-  color: var(--accent);
-  letter-spacing: -0.2px;
-}
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 20px; }
+.card-title { font-family: var(--font-serif); font-size: 1rem; margin-bottom: 16px; color: var(--accent); letter-spacing: -0.2px; }
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-
-/* ── Form inputs ── */
 input[type="text"], textarea, select {
-  width: 100%;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  color: var(--text);
-  border-radius: 8px;
-  padding: 10px 14px;
-  font-family: var(--font-sans);
-  font-size: 0.9rem;
-  outline: none;
-  transition: border-color 0.15s;
+  width: 100%; background: var(--surface); border: 1px solid var(--border);
+  color: var(--text); border-radius: 8px; padding: 10px 14px;
+  font-family: var(--font-sans); font-size: 0.9rem; outline: none; transition: border-color 0.15s;
 }
 input:focus, textarea:focus, select:focus { border-color: var(--accent); }
 textarea { min-height: 140px; resize: vertical; }
 label { font-size: 0.82rem; color: var(--muted); display: block; margin-bottom: 6px; }
 .form-group { margin-bottom: 16px; }
-
-/* ── Buttons ── */
 .btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 22px;
-  border-radius: 8px;
-  font-family: var(--font-sans);
-  font-size: 0.88rem;
-  font-weight: 600;
-  cursor: pointer;
-  border: none;
-  transition: all 0.15s;
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 22px; border-radius: 8px; font-family: var(--font-sans);
+  font-size: 0.88rem; font-weight: 600; cursor: pointer; border: none; transition: all 0.15s;
 }
 .btn-primary { background: var(--accent); color: #fff; }
 .btn-primary:hover { background: #4a7ddd; }
-.btn-outline {
-  background: transparent;
-  border: 1px solid var(--border);
-  color: var(--muted);
-}
+.btn-outline { background: transparent; border: 1px solid var(--border); color: var(--muted); }
 .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+.btn-green { background: #0f2d22; color: var(--success); border: 1px solid var(--success); }
+.btn-green:hover { background: var(--success); color: #000; }
 .btn:disabled { opacity: 0.45; cursor: not-allowed; }
-
-/* ── Stats bar ── */
 .stat-row { display: flex; gap: 20px; margin-bottom: 24px; }
-.stat {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 18px 22px;
-  flex: 1;
-}
-.stat-val {
-  font-family: var(--font-serif);
-  font-size: 2rem;
-  color: var(--accent);
-  line-height: 1;
-}
+.stat { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px 22px; flex: 1; }
+.stat-val { font-family: var(--font-serif); font-size: 2rem; color: var(--accent); line-height: 1; }
 .stat-lbl { font-size: 0.78rem; color: var(--muted); margin-top: 4px; }
-
-/* ── Progress / spinner ── */
-.spinner {
-  display: inline-block;
-  width: 18px; height: 18px;
-  border: 2px solid var(--border);
-  border-top-color: var(--accent);
-  border-radius: 50%;
-  animation: spin 0.7s linear infinite;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-.progress-bar-wrap {
-  height: 6px;
-  background: var(--border);
-  border-radius: 4px;
-  overflow: hidden;
-  margin: 12px 0;
-}
-.progress-bar {
-  height: 100%;
-  background: linear-gradient(90deg, var(--accent), var(--accent2));
-  border-radius: 4px;
-  transition: width 0.4s ease;
-}
-
-/* ── Report output ── */
+.progress-bar-wrap { height: 6px; background: var(--border); border-radius: 4px; overflow: hidden; margin: 12px 0; }
+.progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 4px; transition: width 0.4s ease; }
 .report-out {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 20px;
-  font-family: var(--font-mono);
-  font-size: 0.82rem;
-  white-space: pre-wrap;
-  max-height: 480px;
-  overflow-y: auto;
-  color: #c9d1e8;
-  line-height: 1.7;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+  padding: 20px; font-family: var(--font-mono); font-size: 0.82rem;
+  white-space: pre-wrap; max-height: 480px; overflow-y: auto; color: #c9d1e8; line-height: 1.7;
 }
-
-/* ── Citation rows ── */
-.cit-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--border);
-}
+.cit-row { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
 .cit-row:last-child { border-bottom: none; }
-.cit-icon { font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
 .cit-url { font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent); }
 .cit-reason { font-size: 0.8rem; color: var(--muted); }
-.conf-bar {
-  height: 4px;
-  background: var(--border);
-  border-radius: 2px;
-  margin-top: 6px;
-  width: 160px;
-}
-.conf-fill {
-  height: 100%;
-  border-radius: 2px;
-}
-
-/* ── Source list ── */
-.src-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--border);
-}
-.src-score {
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  font-weight: 500;
-}
+.conf-bar { height: 4px; background: var(--border); border-radius: 2px; margin-top: 6px; width: 160px; }
+.conf-fill { height: 100%; border-radius: 2px; }
+.src-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); }
+.src-score { font-family: var(--font-mono); font-size: 0.85rem; font-weight: 500; }
 .tier-H { color: var(--success); }
 .tier-M { color: var(--warn); }
 .tier-L { color: var(--danger); }
-
-/* ── Critique items ── */
-.gap-item {
-  background: var(--surface);
-  border-left: 3px solid var(--accent2);
-  padding: 10px 14px;
-  border-radius: 0 6px 6px 0;
-  margin-bottom: 8px;
-  font-size: 0.85rem;
-}
-
-/* ── Toast ── */
-#toast {
-  position: fixed;
-  bottom: 28px; right: 28px;
-  background: var(--card);
-  border: 1px solid var(--accent);
-  color: var(--text);
-  padding: 12px 20px;
-  border-radius: 8px;
-  font-size: 0.85rem;
-  opacity: 0;
-  transition: opacity 0.3s;
-  z-index: 999;
-}
+.gap-item { background: var(--surface); border-left: 3px solid var(--accent2); padding: 10px 14px; border-radius: 0 6px 6px 0; margin-bottom: 8px; font-size: 0.85rem; }
+.citation-item { padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 0.82rem; }
+.citation-item:last-child { border-bottom: none; }
+#toast { position: fixed; bottom: 28px; right: 28px; background: var(--card); border: 1px solid var(--accent); color: var(--text); padding: 12px 20px; border-radius: 8px; font-size: 0.85rem; opacity: 0; transition: opacity 0.3s; z-index: 999; }
 #toast.show { opacity: 1; }
 </style>
 </head>
 <body>
 <div class="shell">
-
-<!-- ── Sidebar ── -->
 <aside>
   <div class="logo">Research<span>Agent</span></div>
   <nav>
-    <a href="#" class="active" onclick="show('research',this)">
-      <span class="nav-icon">🔍</span> New Research
-    </a>
-    <a href="#" onclick="show('citations',this)">
-      <span class="nav-icon">📎</span> Citation Evaluator
-    </a>
-    <a href="#" onclick="show('sources',this)">
-      <span class="nav-icon">🏆</span> Source Credibility
-    </a>
-    <a href="#" onclick="show('critique',this)">
-      <span class="nav-icon">🪞</span> Self-Critique
-    </a>
-    <a href="#" onclick="show('collab',this)">
-      <span class="nav-icon">🤝</span> Collaborative Mode
-    </a>
+    <a href="#" class="active" onclick="show('research',this)"><span>🔍</span> New Research</a>
+    <a href="#" onclick="show('citations',this)"><span>📎</span> Citation Evaluator</a>
+    <a href="#" onclick="show('sources',this)"><span>🏆</span> Source Credibility</a>
+    <a href="#" onclick="show('critique',this)"><span>🪞</span> Self-Critique</a>
+    <a href="#" onclick="show('collab',this)"><span>🤝</span> Collaborative Mode</a>
     <div class="nav-sep"></div>
-    <a href="#" onclick="show('jobs',this)">
-      <span class="nav-icon">📋</span> Job Monitor
-    </a>
+    <a href="#" onclick="show('jobs',this)"><span>📋</span> Job Monitor</a>
   </nav>
 </aside>
 
-<!-- ── Main ── -->
 <main>
   <div class="topbar">
     <span class="topbar-title">Autonomous Research Platform</span>
@@ -339,7 +153,7 @@ label { font-size: 0.82rem; color: var(--muted); display: block; margin-bottom: 
         <div class="card-title">🔍 Start a Research Task</div>
         <div class="form-group">
           <label>Research Topic</label>
-          <input type="text" id="topic" placeholder="e.g. Impact of LLMs on scientific publishing"/>
+          <input type="text" id="topic" placeholder="e.g. Latest advancements in AI agents"/>
         </div>
         <div class="grid-2">
           <div class="form-group">
@@ -358,9 +172,7 @@ label { font-size: 0.82rem; color: var(--muted); display: block; margin-bottom: 
             </select>
           </div>
         </div>
-        <button class="btn btn-primary" id="startResearch" onclick="startResearch()">
-          ▶ Run Research
-        </button>
+        <button class="btn btn-primary" id="startResearch" onclick="startResearch()">▶ Run Research</button>
       </div>
 
       <div class="card" id="researchStatus" style="display:none">
@@ -372,9 +184,17 @@ label { font-size: 0.82rem; color: var(--muted); display: block; margin-bottom: 
       <div class="card" id="researchResult" style="display:none">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
           <div class="card-title" style="margin:0">📄 Generated Report</div>
-          <button class="btn btn-outline" onclick="copyReport()">Copy</button>
+          <div style="display:flex;gap:8px">
+            <button class="btn btn-outline" onclick="copyReport()">Copy</button>
+            <button class="btn btn-green" id="downloadBtn" onclick="downloadPDF()" style="display:none">⬇ Download PDF</button>
+          </div>
         </div>
         <div class="report-out" id="reportOut"></div>
+      </div>
+
+      <div class="card" id="citationsResult" style="display:none">
+        <div class="card-title">📚 Citations</div>
+        <div id="citationsList"></div>
       </div>
     </div>
 
@@ -442,10 +262,7 @@ label { font-size: 0.82rem; color: var(--muted); display: block; margin-bottom: 
     <div class="panel" id="panel-collab">
       <div class="card">
         <div class="card-title">🤝 Collaborative Multi-Agent Research</div>
-        <p style="font-size:0.85rem;color:var(--muted);margin-bottom:16px">
-          Two independent agents research the same topic, cross-check each other's findings,
-          and produce a synthesised report.
-        </p>
+        <p style="font-size:0.85rem;color:var(--muted);margin-bottom:16px">Two independent agents research the same topic, cross-check findings, and produce a synthesised report.</p>
         <div class="form-group">
           <label>Research Topic</label>
           <input type="text" id="collabTopic" placeholder="e.g. CRISPR gene editing ethics"/>
@@ -481,9 +298,9 @@ label { font-size: 0.82rem; color: var(--muted); display: block; margin-bottom: 
 <div id="toast"></div>
 
 <script>
-const API = 'http://localhost:8000';
+const API = 'http://127.0.0.1:8000';
+let currentJobId = null;
 
-// ── Navigation ────────────────────────────────────────────────────────────────
 function show(panel, el) {
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
@@ -499,7 +316,6 @@ function toast(msg) {
   setTimeout(() => t.classList.remove('show'), 2800);
 }
 
-// ── Poll a job ────────────────────────────────────────────────────────────────
 async function pollJob(jobId, onUpdate, maxWait = 180000) {
   const start = Date.now();
   while (Date.now() - start < maxWait) {
@@ -512,6 +328,11 @@ async function pollJob(jobId, onUpdate, maxWait = 180000) {
   return null;
 }
 
+function setMsg(msgId, barId, msg, pct) {
+  document.getElementById(msgId).textContent = msg;
+  document.getElementById(barId).style.width = pct + '%';
+}
+
 // ── Research ──────────────────────────────────────────────────────────────────
 async function startResearch() {
   const topic = document.getElementById('topic').value.trim();
@@ -521,6 +342,7 @@ async function startResearch() {
 
   document.getElementById('researchStatus').style.display = 'block';
   document.getElementById('researchResult').style.display = 'none';
+  document.getElementById('citationsResult').style.display = 'none';
   document.getElementById('startResearch').disabled = true;
   setMsg('researchMsg', 'researchBar', 'Submitting research task…', 10);
 
@@ -528,18 +350,27 @@ async function startResearch() {
     const r = await fetch(`${API}/api/research`, {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({ topic, mode, enable_self_critique: rounds > 0, max_critique_rounds: rounds })
+      body: JSON.stringify({
+        query: topic,        // ✅ correct field name
+        mode,
+        enable_self_critique: rounds > 0,
+        max_critique_rounds: rounds
+      })
     });
     const { job_id } = await r.json();
+    currentJobId = job_id;
+
     const progress = [
-      [20, 'Agent is planning research strategy…'],
-      [45, 'Searching and retrieving sources…'],
-      [65, 'Summarising findings…'],
-      [80, 'Running self-critique…'],
-      [92, 'Generating final report…'],
+      [20, 'Planning research strategy…'],
+      [40, 'Searching the web…'],
+      [55, 'Extracting content…'],
+      [65, 'Reasoning over findings…'],
+      [75, 'Summarising results…'],
+      [85, 'Generating report…'],
+      [92, 'Running self-critique…'],
     ];
     let pi = 0;
-    const job = await pollJob(job_id, (j) => {
+    const job = await pollJob(job_id, () => {
       if (pi < progress.length) {
         const [pct, msg] = progress[pi++];
         setMsg('researchMsg', 'researchBar', msg, pct);
@@ -550,6 +381,21 @@ async function startResearch() {
       setMsg('researchMsg', 'researchBar', '✅ Done!', 100);
       document.getElementById('reportOut').textContent = job.result.report;
       document.getElementById('researchResult').style.display = 'block';
+
+      // Show citations if available
+      const citations = job.result.citations || [];
+      if (citations.length > 0) {
+        document.getElementById('citationsList').innerHTML = citations.map(c =>
+          `<div class="citation-item">
+            <span style="color:var(--accent);font-family:var(--font-mono)">${c.id}</span>
+            <a href="${c.url}" target="_blank" style="color:var(--muted);font-size:0.78rem;margin-left:8px">${c.url}</a>
+          </div>`
+        ).join('');
+        document.getElementById('citationsResult').style.display = 'block';
+      }
+
+      // Show PDF download button
+      document.getElementById('downloadBtn').style.display = 'inline-flex';
       toast('Research complete!');
     } else {
       setMsg('researchMsg', 'researchBar', '❌ ' + (job?.error || 'Unknown error'), 100);
@@ -560,14 +406,14 @@ async function startResearch() {
   document.getElementById('startResearch').disabled = false;
 }
 
-function setMsg(msgId, barId, msg, pct) {
-  document.getElementById(msgId).textContent = msg;
-  document.getElementById(barId).style.width = pct + '%';
-}
-
 function copyReport() {
   navigator.clipboard.writeText(document.getElementById('reportOut').textContent);
   toast('Copied to clipboard!');
+}
+
+async function downloadPDF() {
+  if (!currentJobId) { toast('No report to download'); return; }
+  window.open(`${API}/api/download-report/${currentJobId}`, '_blank');
 }
 
 // ── Citations ─────────────────────────────────────────────────────────────────
@@ -588,11 +434,11 @@ async function evalCitations() {
     `;
     document.getElementById('citList').innerHTML = d.results.map(r => `
       <div class="cit-row">
-        <div class="cit-icon">${r.valid ? '✅' : '❌'}</div>
+        <div>${r.valid ? '✅' : '❌'}</div>
         <div style="flex:1">
           <div class="cit-url">[${r.id}] ${r.url}</div>
           <div class="cit-reason">${r.reason}</div>
-          ${r.excerpt ? `<div class="cit-reason" style="margin-top:4px;font-style:italic">"${r.excerpt.slice(0,100)}…"</div>` : ''}
+          ${r.excerpt ? `<div class="cit-reason" style="font-style:italic">"${r.excerpt.slice(0,100)}…"</div>` : ''}
           <div class="conf-bar"><div class="conf-fill" style="width:${Math.round(r.confidence*100)}%;background:${r.valid?'var(--success)':'var(--danger)'}"></div></div>
         </div>
         <span class="badge ${r.valid?'badge-green':'badge-red'}">${(r.confidence*100).toFixed(0)}%</span>
@@ -651,7 +497,7 @@ function renderCritique(d) {
     <strong style="color:${qColor[d.overall_quality]||'var(--text)'}">${d.overall_quality}</strong> — ${d.overall_summary}
   </p>`;
   if (d.gaps?.length) {
-    html += `<div style="font-size:0.8rem;font-weight:600;color:var(--muted);margin-bottom:8px">GAPS IDENTIFIED</div>`;
+    html += `<div style="font-size:0.8rem;font-weight:600;color:var(--muted);margin-bottom:8px">GAPS</div>`;
     html += d.gaps.map(g => `<div class="gap-item"><strong>${g.title}</strong><br>${g.description}</div>`).join('');
   }
   if (d.unsupported_claims?.length) {
@@ -677,7 +523,7 @@ async function doImprove() {
       body: JSON.stringify({ report_markdown: md, topic, max_rounds: 1 })
     });
     const { job_id } = await r.json();
-    toast('Improving report… check back in a moment');
+    toast('Improving report…');
     const job = await pollJob(job_id, () => {});
     if (job?.status === 'done') {
       document.getElementById('improvedOut').textContent = job.result.final_report;
@@ -698,7 +544,11 @@ async function startCollab() {
   try {
     const r = await fetch(`${API}/api/research`, {
       method: 'POST', headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({ topic, mode: 'collaborative', enable_self_critique: false })
+      body: JSON.stringify({
+        query: topic,        // ✅ correct field name
+        mode: 'collaborative',
+        enable_self_critique: false
+      })
     });
     const { job_id } = await r.json();
     const steps = [
@@ -728,15 +578,14 @@ async function startCollab() {
         ccHtml += cc.conflicts.slice(0,3).map(c=>`
           <div class="gap-item" style="border-color:var(--warn)">
             <strong>A:</strong> ${(c.claim_A||'').slice(0,80)}<br>
-            <strong>B:</strong> ${(c.claim_B||'').slice(0,80)}<br>
-            <em>${c.resolution}</em>
+            <strong>B:</strong> ${(c.claim_B||'').slice(0,80)}
           </div>`).join('');
       }
-      document.getElementById('collabCC').innerHTML = ccHtml || '<span style="color:var(--muted)">No cross-check data returned</span>';
+      document.getElementById('collabCC').innerHTML = ccHtml || '<span style="color:var(--muted)">No cross-check data</span>';
       document.getElementById('collabOut').textContent = job.result.report;
       document.getElementById('collabResult').style.display = 'block';
     } else {
-      setMsg('collabMsg', 'collabBar', '❌ ' + (job?.error || 'Failed'), 100);
+      setMsg('collabMsg','collabBar','❌ ' + (job?.error || 'Failed'), 100);
     }
   } catch(e) { setMsg('collabMsg','collabBar','❌ API unreachable',100); }
 }
@@ -761,6 +610,7 @@ async function loadJobs() {
           <span style="font-size:0.82rem;color:${statusColor[j.status]||'var(--muted)'}">● ${j.status}</span>
         </div>
         <div style="font-size:0.75rem;color:var(--muted);margin-top:6px">${j.created_at}</div>
+        ${j.status==='done' ? `<a href="${API}/api/download-report/${j.id}" target="_blank" style="font-size:0.78rem;color:var(--success);margin-top:6px;display:inline-block">⬇ Download PDF</a>` : ''}
         ${j.error ? `<div style="font-size:0.8rem;color:var(--danger);margin-top:6px">${j.error}</div>` : ''}
       </div>
     `).join('');
