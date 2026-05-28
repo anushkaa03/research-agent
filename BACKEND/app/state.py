@@ -8,3 +8,6 @@ class AgentState(TypedDict):
     search_results: List
     extracted_text: List[str]
     final_answer: str
+    research_data: list
+    report: str
+    pdf_path: str
